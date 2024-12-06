@@ -20,8 +20,13 @@ public class MyString {
      * @return the number of times c appears in str
      */
     public static int countChar(String str, char ch) {
-        //// Replace the following statement with your code
-        return 0;
+        
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (ch == str.charAt(i))
+            count++;
+        }
+        return count;
     }
 
     /** Returns true if str1 is a subset string str2, false otherwise
@@ -36,10 +41,15 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-         //// Replace the following statement with your code
-        return false;
+        // if countChar bigger the
+        for (int i = 0; i < str1.length(); i++) {
+            if (countChar(str1, str2.charAt(i)) > countChar(str2, str2.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
-
+   
     /** Returns a string which is the same as the given string, with a space
      * character inserted after each character in the given string, except
      * for the last character. 
@@ -49,8 +59,19 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        //// Replace the following statement with your code
-        return null;
+
+        String newstr = "";
+        for (int i = 0; i < str.length() - 1; i++) {
+            if (str.charAt(i) != ' ') {
+                newstr += (str.charAt(i + 1) != ' ') ? str.charAt(i) + " " : str.charAt(i);
+            } else {
+                newstr += str.charAt(i);
+            }
+        }
+            if (str.charAt(str.length() - 1) != ' ') {
+                newstr += str.charAt(str.length() - 1);
+            }
+        return newstr;
     }
   
     /**

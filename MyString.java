@@ -41,9 +41,14 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-        // if countChar bigger the
+
+        // if str1 bigger
+        if (str2.length() < str1.length()) {
+            return false;
+        }
+        // if countChar bigger then
         for (int i = 0; i < str1.length(); i++) {
-            if (countChar(str1, str2.charAt(i)) > countChar(str2, str2.charAt(i))) {
+            if (countChar(str1, str1.charAt(i)) > countChar(str2, str1.charAt(i))) {
                 return false;
             }
         }
@@ -64,7 +69,7 @@ public class MyString {
 
         // if string empty
         if (str.length() == 0)
-            return null;
+            return str ;
 
         
         for (int i = 0; i < str.length(); i++) {
@@ -87,7 +92,7 @@ public class MyString {
         
         String randomSt = "";
         if (n == 0) {
-            return null;
+            return randomSt;
         }
         for (int i = 0; i < n; i++) {
            randomSt +=  (char)(Math.random() * 26 + 97); // ascii 'a' = 97
@@ -127,11 +132,11 @@ public class MyString {
      * @param str - a string
      * @return a string consisting of str with ch inserted somewhere
      */
-    public static String insertRandomly(char ch, String str) {
-         // Generate a random index between 0 and str.length()
-         int randomIndex = (int) (Math.random() * (str.length() + 1));
-         // Insert the character at the random index
-         String result = str.substring(0, randomIndex) + ch + str.substring(randomIndex);
-         return result;
-    }    
-}
+
+     public static String insertRandomlyy (char ch, String str) {
+        int randomIndex = (int) (Math.random() * (str.length() + 1));
+        String result = str.substring(0, randomIndex) + ch + str.substring(randomIndex);
+        return result;
+
+     }
+    }

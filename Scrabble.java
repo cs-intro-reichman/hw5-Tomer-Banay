@@ -124,7 +124,7 @@ public class Scrabble {
 			String input = in.readString();
 			if (input.equals(".")) {
 				System.out.println("End of hand. Total score: " + score + " points");
-				break;
+				return;
 			}
 			if (!(MyString.subsetOf(input, hand))) {
 				System.out.println("Invalid word. Try again.");
@@ -166,7 +166,6 @@ public class Scrabble {
 						String hand = MyString.randomStringOfLetters(HAND_SIZE);
 						playHand(hand);
 					} else if (key.equals("e")) {
-						System.out.println("Bye Bye!");
 						break; // end games
 					} else {
 						System.out.println("invalid input. Try again");

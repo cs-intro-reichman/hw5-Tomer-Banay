@@ -52,16 +52,13 @@ public class Scrabble {
 		if (word.length()== 0){
 		return false;
 		}
-		String upperWord = word.toUpperCase();
-		 // Loop through the dictionary and check if the word exists
- 		for (int i = 0; i < NUM_OF_WORDS; i++) {
-			if (DICTIONARY[i].equals(upperWord)) {
-		return true;
-			}
+		for (int i = 0; i < DICTIONARY.length; i++) {
+			if (word.equals(DICTIONARY[i]))
+			return true;
 		}
-			return false;
-	}
-
+		return false;
+}
+	
 	
 	// Returns the Scrabble score of the given word.
 	// If the length of the word equals the length of the hand, adds 50 points to the score.
@@ -161,18 +158,17 @@ public class Scrabble {
 			System.out.println("Enter n to deal a new hand, or e to end the game:");
 			// Gets the user's input, which is all the characters entered by 
 			// the user until the user enter the ENTER character.
-			String key = in.readString();
-					if (key.equals("n")) {
-						String hand = MyString.randomStringOfLetters(HAND_SIZE);
-						playHand(hand);
-					} else if (key.equals("e")) {
-						break; // end games
-					} else {
-						System.out.println("invalid input. Try again");
-				}	
+			String input = in.readString();
+			if (input.equals("e")){
+				break;
+			} else if (input.equals("n")) {
+				playHand(createHand());
+			} else {
+				System.out.println("error, try again.");
 			}
+			
 		}
-
+	}
 	public static void main(String[] args) {
 		//// Uncomment the test you want to run
 		////testBuildingTheDictionary();  

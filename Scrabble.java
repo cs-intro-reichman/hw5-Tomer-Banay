@@ -68,7 +68,7 @@ public class Scrabble {
 	// If the word includes the sequence "runi", adds 1000 points to the game.
 	public static int wordScore(String word) {
 		
-		String prize = "runi";
+		String runi = "runi";
 		int score = 0;
 
 		for (int i = 0; i < word.length(); i++) {
@@ -80,7 +80,7 @@ public class Scrabble {
 		if (word.length() == 10) {
 			score += 50;
 		}
-		if (MyString.subsetOf (prize, word)){
+		if (MyString.subsetOf (runi, word)){
 			score += 1000;
 	}
 		return score;
@@ -123,33 +123,30 @@ public class Scrabble {
 			// end-of-line characters.
 			String input = in.readString();
 			if (input.equals(".")) {
-				System.out.printf("End of hand. Total score: " + score + " points");
+				System.out.println("End of hand. Total score: " + score + " points");
 				break;
 			}
 			if (!(MyString.subsetOf(input, hand))) {
 				System.out.println("Invalid word. Try again.");
-				break;
-			} else if (!isWordInDictionary(hand)) {
-				System.out.println("No such word in the dictionary. Try again.");
 				continue;
-			} else {
-				int inputScore = wordScore(input);
-				score += wordScore(input);
-				System.out.println( input +" earned " + inputScore + " points. Score: " + score + " points");
-				hand = MyString.remove(hand, input);
 			}
 
-
-			//// Replace the following break statement with code
-			//// that completes the hand playing loop
-			break;
+			// Check if the input is a valid word in the dictionary
+			if (!isWordInDictionary(input)) {
+			System.out.println("No such word in the dictionary. Try again.");
+			continue;
+			}
+			
+			int inputScore = wordScore(input);
+			score += wordScore(input);
+			System.out.println( input +" earned " + inputScore + " points. Score: " + score + " points");
+			hand = MyString.remove(hand, input);
 		}
-		if (hand.length() == 0) {
-	        System.out.println("Ran out of letters. Total score: " + score + " points");
-		} else {
-			System.out.println("End of hand. Total score: " + score + " points");
-		}
+		
+	    System.out.println("Ran out of letters. Total score: " + score + " points");
 	}
+
+		
 
 	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'
 	// to end the game. If the user enters any other input, writes an error message.

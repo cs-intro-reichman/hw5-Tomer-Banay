@@ -48,24 +48,61 @@ public class Scrabble {
 
 	// Checks if the given word is in the dictionary.
 	public static boolean isWordInDictionary(String word) {
-		//// Replace the following statement with your code
+		// empty strings
+		if (word.length()== 0){
 		return false;
+		}
+		String upperWord = word.toUpperCase();
+		 // Loop through the dictionary and check if the word exists
+ 		for (int i = 0; i < NUM_OF_WORDS; i++) {
+			if (DICTIONARY[i].equals(upperWord)) {
+		return true;
+			}
+		}
+			return false;
 	}
+
 	
 	// Returns the Scrabble score of the given word.
 	// If the length of the word equals the length of the hand, adds 50 points to the score.
 	// If the word includes the sequence "runi", adds 1000 points to the game.
 	public static int wordScore(String word) {
-		//// Replace the following statement with your code
-		return 0;
+		
+		String prize = "runi";
+		int score = 0;
+
+		for (int i = 0; i < word.length(); i++) {
+			int find = word.charAt(i) - 97;
+			score += SCRABBLE_LETTER_VALUES[find];
+		}
+		score *= word.length();
+
+		if (word.length() == 10) {
+			score += 50;
+		}
+		if (MyString.subsetOf (prize, word)){
+			score += 1000;
+	}
+		return score;
 	}
 
 	// Creates a random hand of length (HAND_SIZE - 2) and then inserts
 	// into it, at random indexes, the letters 'a' and 'e'
 	// (these two vowels make it easier for the user to construct words)
+	public static String insertRandomlyy (char ch, String str) {
+        int randomIndex = (int) (Math.random() * (str.length() + 1));
+        String result = str.substring(0, randomIndex) + ch + str.substring(randomIndex);
+        return result;
+
+     }
 	public static String createHand() {
-		//// Replace the following statement with your code
-		return null;
+
+		String hand = MyString.randomStringOfLetters(HAND_SIZE - 2);
+		char one = 'e';
+		char two = 'a';
+		hand = insertRandomlyy(one, hand);
+		hand = insertRandomlyy(two, hand);
+		return hand;
 	}
 	
     // Runs a single hand in a Scrabble game. Each time the user enters a valid word:

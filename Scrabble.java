@@ -138,7 +138,7 @@ public class Scrabble {
 			}
 			
 			int inputScore = wordScore(input);
-			score += wordScore(input);
+			score += inputScore;
 			System.out.println( input +" earned " + inputScore + " points. Score: " + score + " points");
 			hand = MyString.remove(hand, input);
 		}
@@ -162,22 +162,17 @@ public class Scrabble {
 			// Gets the user's input, which is all the characters entered by 
 			// the user until the user enter the ENTER character.
 			String key = in.readString();
-			boolean first = true;
-			String hand = "";
 					if (key.equals("n")) {
-						hand = MyString.randomStringOfLetters(HAND_SIZE);
+						String hand = MyString.randomStringOfLetters(HAND_SIZE);
 						playHand(hand);
-					if (key.equals("e")) {
-						hand = MyString.randomStringOfLetters(HAND_SIZE);
-							playHand(hand);
+					} else if (key.equals("e")) {
+						System.out.println("Bye Bye!");
+						break; // end games
 					} else {
 						System.out.println("invalid input. Try again");
-					}
-					System.out.println("Enter n to deal a new hand, or e to end the game:");
+				}	
 			}
-			break;
 		}
-	}
 
 	public static void main(String[] args) {
 		//// Uncomment the test you want to run

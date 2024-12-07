@@ -61,17 +61,16 @@ public class MyString {
     public static String spacedString(String str) {
 
         String newstr = "";
-        for (int i = 0; i < str.length() - 1; i++) {
-            if (str.charAt(i) != ' ') {
-                newstr += (str.charAt(i + 1) != ' ') ? str.charAt(i) + " " : str.charAt(i);
-            } else {
-                newstr += str.charAt(i);
+
+        // if string empty
+        if (str.length() == 0)
+            return null;
+
+        
+        for (int i = 0; i < str.length(); i++) {
+                newstr += str.charAt(i) + " ";
             }
-        }
-            if (str.charAt(str.length() - 1) != ' ') {
-                newstr += str.charAt(str.length() - 1);
-            }
-        return newstr;
+        return newstr.substring(0,newstr.length()-1);
     }
   
     /**
@@ -85,8 +84,15 @@ public class MyString {
      * @return a randomly generated string, consisting of 'n' lowercase letters
      */
     public static String randomStringOfLetters(int n) {
-        //// Replace the following statement with your code
-        return null;
+        
+        String randomSt = "";
+        if (n == 0) {
+            return null;
+        }
+        for (int i = 0; i < n; i++) {
+           randomSt +=  (char)(Math.random() * 26 + 97); // ascii 'a' = 97
+        }
+        return randomSt;
     }
 
     /**
@@ -99,8 +105,18 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-       //// Replace the following statement with your code
-        return null;
+
+        // if str1 is empty 
+        if (str1.length() == 0) {
+        return str2;
+        }
+
+        for (int i = 0; i < str2.length(); i ++) {
+            char ch = str2.charAt(i);
+            str1 = str1.substring(0, str1.indexOf(ch)) 
+                    + str1.substring(str1.indexOf(ch) + 1);
+        }
+        return str1;
     }
 
     /**

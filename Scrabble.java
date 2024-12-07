@@ -122,6 +122,24 @@ public class Scrabble {
 			// non-whitespace characters. Whitespace is either space characters, or  
 			// end-of-line characters.
 			String input = in.readString();
+			if (input.equals(".")) {
+				System.out.printf("End of hand. Total score: " + score + " points");
+				break;
+			}
+			if (!(MyString.subsetOf(input, hand))) {
+				System.out.println("Invalid word. Try again.");
+				break;
+			} else if (!isWordInDictionary(hand)) {
+				System.out.println("No such word in the dictionary. Try again.");
+				continue;
+			} else {
+				int inputScore = wordScore(input);
+				score += wordScore(input);
+				System.out.println( input +" earned " + inputScore + " points. Score: " + score + " points");
+				hand = MyString.remove(hand, input);
+			}
+
+
 			//// Replace the following break statement with code
 			//// that completes the hand playing loop
 			break;
@@ -146,9 +164,20 @@ public class Scrabble {
 			System.out.println("Enter n to deal a new hand, or e to end the game:");
 			// Gets the user's input, which is all the characters entered by 
 			// the user until the user enter the ENTER character.
-			String input = in.readString();
-			//// Replace the following break statement with code
-			//// that completes the game playing loop
+			String key = in.readString();
+			boolean first = true;
+			String hand = "";
+					if (key.equals("n")) {
+						hand = MyString.randomStringOfLetters(HAND_SIZE);
+						playHand(hand);
+					if (key.equals("e")) {
+						hand = MyString.randomStringOfLetters(HAND_SIZE);
+							playHand(hand);
+					} else {
+						System.out.println("invalid input. Try again");
+					}
+					System.out.println("Enter n to deal a new hand, or e to end the game:");
+			}
 			break;
 		}
 	}
